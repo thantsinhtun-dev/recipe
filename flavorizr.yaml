@@ -1,0 +1,27 @@
+app:
+  android:
+    flavorDimensions: "flavor-type"
+
+flavors:
+  dev:
+    app:
+      name: "Recipe Dev"
+
+    android:
+      applicationId: "com.stone.recipe.dev"
+
+    ios:
+      bundleId: "com.stone.recipe.dev"
+
+  prod:
+    app:
+      name: "Recipe"
+
+    android:
+      applicationId: "com.stone.recipe"
+
+    ios:
+      bundleId: "com.stone.recipe"
+
+ide: idea
+  
