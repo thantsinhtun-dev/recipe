@@ -24,8 +24,8 @@ class RecipeDao extends DatabaseAccessor<AppDatabase> {
     return (select(_db.recipeTable)..where((tbl) => tbl.id.equals(id))).getSingleOrNull();
   }
 
-  Future<List<RecipeDetailEntity>> getAllData() {
-    return select(_db.recipeTable).get();
+  Stream<List<RecipeDetailEntity>> getAllData() {
+    return select(_db.recipeTable).watch();
   }
 
   Future<int> deleteAll() {

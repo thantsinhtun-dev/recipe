@@ -15,7 +15,7 @@ abstract class RecipeLocalDataSource {
 
   Future<RecipeDetailEntity?> getRecipeDetail(String id);
 
-  Future<List<RecipeDetailEntity>> getAllData();
+  Stream<List<RecipeDetailEntity>> getAllData();
 
   Future<int> deleteAll();
 

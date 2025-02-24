@@ -18,7 +18,7 @@ class RecipeLocalDataSourceImpl extends RecipeLocalDataSource {
   }
 
   @override
-  Future<List<RecipeDetailEntity>> getAllData() {
+  Stream<List<RecipeDetailEntity>> getAllData() {
     return _dao.getAllData();
   }
 

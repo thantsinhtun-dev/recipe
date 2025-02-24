@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../features/auth/ui/screens/login_screen.dart';
 import '../features/recipe/ui/screens/favourite_screen.dart';
 import '../features/recipe/ui/screens/home_screen.dart';
-import '../features/main/screens/meal_plan_screen.dart';
+import '../features/meal_plan/ui/screen/meal_plan_screen.dart';
 import '../features/main/screens/settings_screen.dart';
 import '../features/main/screens/skeleton_screen.dart';
 import '../features/recipe/ui/screens/recipe_detail_screen.dart';

@@ -48,6 +48,42 @@ class RecipeDetailEntity implements Insertable<RecipeDetailEntity> {
       isFavourite: isFavourite,
     ).toColumns(nullToAbsent);
   }
+
+  factory RecipeDetailEntity.fromJson(Map<String, dynamic> json) => RecipeDetailEntity(
+        id: json["id"],
+        image: json["image"],
+        title: json["title"],
+        readyInMinutes: json["readyInMinutes"],
+        aggregateLikes: json["aggregateLikes"],
+        healthScore: json["healthScore"],
+        extendedIngredients: List<ExtendedIngredientEntity>.from(
+            json["extendedIngredients"]!
+                .map((x) => ExtendedIngredientEntity.fromJson(x))),
+        nutrition: NutritionEntity.fromJson(json["nutrition"]),
+        summary: json["summary"],
+        instructions: json["instructions"],
+        analyzedInstructions: List<AnalyzedInstructionEntity>.from(
+            json["analyzedInstructions"]!
+                .map((x) => AnalyzedInstructionEntity.fromJson(x))),
+        isFavourite: json["isFavourite"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "image": image,
+        "title": title,
+        "readyInMinutes": readyInMinutes,
+        "aggregateLikes": aggregateLikes,
+        "healthScore": healthScore,
+        "extendedIngredients":
+            List<dynamic>.from(extendedIngredients.map((x) => x.toJson())),
+        "nutrition": nutrition.toJson(),
+        "summary": summary,
+        "instructions": instructions,
+        "analyzedInstructions":
+            List<dynamic>.from(analyzedInstructions.map((x) => x.toJson())),
+        "isFavourite": isFavourite,
+      };
 }
 
 class NutritionEntity {
