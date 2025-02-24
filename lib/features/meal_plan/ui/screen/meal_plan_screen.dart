@@ -24,7 +24,7 @@ class _MealPlanScreenState extends ConsumerState<MealPlanScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      ref.read(mealPlanProvider.notifier).initMealPlan();
+      ref.read(mealPlanProvider.notifier).initCurrentWeek();
     });
   }
 
@@ -106,7 +106,9 @@ class _MealPlanScreenState extends ConsumerState<MealPlanScreen> {
                         ).paddingSymmetric(horizontal: kMargin16),
                         const Divider().paddingSymmetric(horizontal: kMargin16),
                         item.recipes.isEmpty
-                            ? const SizedBox(height: kMargin56,)
+                            ? const SizedBox(
+                                height: kMargin56,
+                              )
                             : SizedBox(
                                 height: 200,
                                 child: ListView.builder(
@@ -139,27 +141,32 @@ class _MealPlanScreenState extends ConsumerState<MealPlanScreen> {
   }
 }
 
-class MealPlanTitleWidget extends StatelessWidget {
+class MealPlanTitleWidget extends ConsumerWidget {
   const MealPlanTitleWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var mealPlanState = ref.watch(mealPlanProvider);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            ref.read(mealPlanProvider.notifier).switchPreviousWeek();
+          },
           icon: const Icon(Icons.arrow_back_ios_rounded),
         ),
-        const Text(
-          'Meal Plan',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+        Text(
+          mealPlanState.weeklyText,
+          style: context.appFonts.customFont(
+            fontSize: FontSize.s16,
+            fontWeight: FontWeight.w500,
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            ref.read(mealPlanProvider.notifier).switchNextWeek();
+          },
           icon: const Icon(Icons.arrow_forward_ios_rounded),
         )
       ],

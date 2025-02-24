@@ -16,4 +16,7 @@ class Utils {
   static String formatDate(DateTime date) {
     return DateFormat('dd/MM/yyyy').format(date);
   }
+  static String formatDayAndMonth(DateTime date) {
+    return DateFormat('MMM dd').format(date);
+  }
 }
