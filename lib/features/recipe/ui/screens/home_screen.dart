@@ -2,13 +2,32 @@ import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recipe/core/core.dart';
+import 'package:recipe/features/recipe/ui/providers/home_provider.dart';
 import 'package:recipe/features/recipe/ui/screens/recipe_detail_screen.dart';
 import 'package:recipe/features/recipe/ui/screens/search_recipe_screen.dart';
+import 'package:recipe/features/recipe/ui/widgets/recipe_detail_body.dart';
+import 'package:recipe/shared/extenstions/ext_widget.dart';
+
+import '../widgets/recipe_list_tile.dart';
 
 @RoutePage()
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  ConsumerState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(homeProvider.notifier).initHomeRecipe();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +38,7 @@ class HomeScreen extends StatelessWidget {
             onTapSearch: () {
               context.router.pushWidget(const SearchRecipeScreen());
             },
-          ),
+          ).paddingSymmetric(horizontal: kMargin16),
           const HomeBodyWidget(),
         ],
       ),
@@ -27,139 +46,78 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class HomeBodyWidget extends StatelessWidget {
+class HomeBodyWidget extends ConsumerWidget {
   const HomeBodyWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    var homeState = ref.watch(homeProvider);
     return Expanded(
       child: Column(
         children: [
           SizedBox(
             height: 40,
             child: ListView.builder(
+              padding: const EdgeInsets.symmetric(horizontal: kMargin12),
               scrollDirection: Axis.horizontal,
-              itemCount: AppStrings.mealTypes.length,
+              itemCount: homeState.mealTypes.length,
               itemBuilder: (BuildContext context, int index) {
-                var item = AppStrings.mealTypes[index];
-                return Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: kMargin16,
-                    vertical: kMargin4,
-                  ),
-                  margin: const EdgeInsets.symmetric(horizontal: kMargin6),
-                  decoration: BoxDecoration(
-                    color: context.appColors.primaryColor.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(kMargin12),
-                  ),
-                  child: Center(
-                    child: Text(
-                      item,
-                      style: context.appFonts.customFont(
-                        fontSize: FontSize.s14,
-                        fontWeight: FontWeight.w500,
-                        color: context.appColors.primaryColor,
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.zero,
-              // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: (){
-                    context.router.pushWidget(RecipeDetailScreen(id: "663559",));
+                var item = homeState.mealTypes[index];
+                return InkWell(
+                  borderRadius: BorderRadius.circular(kMargin12),
+                  splashColor: context.appColors.primaryColor.withValues(alpha: 0.2),
+                  highlightColor: context.appColors.primaryColor.withValues(alpha: 0.2),
+                  onTap: () {
+                    ref.read(homeProvider.notifier).changeMealType(item);
                   },
                   child: Container(
-                    height: 180,
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: kMargin16,
-                      vertical: kMargin6,
-                    ),
                     padding: const EdgeInsets.symmetric(
                       horizontal: kMargin16,
-                      vertical: kMargin16,
+                      vertical: kMargin4,
                     ),
                     decoration: BoxDecoration(
-                      image: DecorationImage(
-                        colorFilter: ColorFilter.mode(
-                          context.appColors.grayColor.withValues(alpha: 0.5),
-                          BlendMode.darken,
-                        ),
-                        image: const CachedNetworkImageProvider(
-                          "https://img.spoonacular.com/recipes/657167-556x370.jpg",
-                        ),
-                        fit: BoxFit.cover,
-                      ),
+                      color: item == homeState.currentMealType
+                          ? context.appColors.primaryColor.withValues(alpha: 0.2)
+                          : context.appColors.grayColor.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(kMargin12),
                     ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              "Foodista",
-                              style: context.appFonts.customFont(
-                                fontSize: FontSize.s16,
-                                fontWeight: FontWeight.w500,
-                                color: context.appColors.whiteColor,
-                              ),
-                            ),
-                            const Spacer(),
-                            Image.asset(
-                              AppImages.icTabFavourite,
-                              width: 24,
-                              color: const Color(0xffe31b23).withValues(alpha: 0.8),
-                              // color: context.appColors.primaryColor.withValues(alpha: 0.8),
-                            ),
-                            const SizedBox(width: kMargin6),
-                            Text(
-                              "4",
-                              style: context.appFonts.customFont(
-                                fontSize: FontSize.s16,
-                                fontWeight: FontWeight.w600,
-                                color: context.appColors.whiteColor,
-                              ),
-                            )
-                          ],
+                    child: Center(
+                      child: Text(
+                        item,
+                        style: context.appFonts.customFont(
+                          fontSize: FontSize.s14,
+                          fontWeight: FontWeight.w500,
+                          color: item == homeState.currentMealType
+                              ? context.appColors.primaryColor
+                              : context.appColors.grayColor,
                         ),
-                        const Spacer(),
-                        Text(
-                          "Garlicky Kale",
-                          style: context.appFonts.customFont(
-                            fontSize: FontSize.s16,
-                            fontWeight: FontWeight.w600,
-                            color: context.appColors.whiteColor,
-                          ),
-                        ),
-                        const SizedBox(height: kMargin10),
-                        Row(
-                          spacing: kMargin10,
-                          children: [
-                            Icon(Icons.access_time_rounded,
-                                color: context.appColors.whiteColor),
-                            Text(
-                              "45 min",
-                              style: context.appFonts.customFont(
-                                  fontSize: FontSize.s14,
-                                  fontWeight: FontWeight.w400,
-                                  color: context.appColors.whiteColor),
-                            ),
-                          ],
-                        )
-                      ],
+                      ),
                     ),
                   ),
-                );
+                ).paddingSymmetric(horizontal: kMargin6);
               },
             ),
+          ).paddingSymmetric(vertical: kMargin16),
+          Expanded(
+            child: homeState.status == HomeProviderStatus.loading
+                ? const Center(child: CircularProgressIndicator())
+                : ListView.builder(
+                    padding: EdgeInsets.zero,
+                    // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+                    itemCount: homeState.recipes.length,
+                    itemBuilder: (context, index) {
+                      var item = homeState.recipes[index];
+                      return RecipeListTile(
+                        id: item.id,
+                        imageUrl: item.image,
+                        owner: "",
+                        title: item.title,
+                        likeCount: item.aggregateLikes,
+                        time: item.readyInMinutes.toString(),
+                        ingredients: item.extendedIngredients.map((e)=>e.name).toList(),
+                      );
+                    },
+                  ),
           )
         ],
       ),

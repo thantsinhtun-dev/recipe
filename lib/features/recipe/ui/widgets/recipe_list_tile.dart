@@ -108,6 +108,8 @@ class RecipeListTile extends StatelessWidget {
             if (ingredients.isNotEmpty)
               Text(
                 ingredients.join(","),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: context.appFonts.customFont(
                     fontSize: FontSize.s14,
                     fontWeight: FontWeight.w400,

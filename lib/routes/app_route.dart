@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
-import '../features/auth/ui/screens/login_screen.dart';
 import '../features/recipe/ui/screens/favourite_screen.dart';
 import '../features/recipe/ui/screens/home_screen.dart';
 import '../features/meal_plan/ui/screen/meal_plan_screen.dart';
@@ -19,10 +18,9 @@ class AppRouter extends RootStackRouter {
           page: SkeletonRoute.page,
           initial: true,
           children: [
-            AutoRoute(page: HomeRoute.page, path: 'home'),
-            AutoRoute(page: MealPlanRoute.page, path: 'mealPlan'),
+            AutoRoute(page: HomeRoute.page, path: 'home',initial: true),
             AutoRoute(page: FavouriteRoute.page, path: 'favourite'),
-            AutoRoute(page: SettingsRoute.page, path: 'settings'),
+            AutoRoute(page: MealPlanRoute.page, path: 'mealPlan'),
           ],
         ),
         AutoRoute(page: RecipeDetailRoute.page, path: '/recipeDetail'),

@@ -14,9 +14,8 @@ class SkeletonScreen extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       routes: const [
         HomeRoute(),
-        MealPlanRoute(),
         FavouriteRoute(),
-        SettingsRoute(),
+        MealPlanRoute(),
       ],
       // homeIndex: 3,
       bottomNavigationBuilder: (context, tabsRouter) {
@@ -37,20 +36,16 @@ class SkeletonScreen extends StatelessWidget {
               activeIcon: Image.asset(AppImages.icTabHome, width: 24, color: context.appColors.primaryColor),
             ),
             BottomNavigationBarItem(
-              label: AppStrings.lblTabMealPlan,
-              icon: Image.asset(AppImages.icTabMealPlan, width: 24),
-              activeIcon: Image.asset(AppImages.icTabMealPlan, width: 24, color: context.appColors.primaryColor),
-            ),
-            BottomNavigationBarItem(
               label: AppStrings.lblTabFavourite,
               icon: Image.asset(AppImages.icTabFavourite, width: 24),
               activeIcon: Image.asset(AppImages.icTabFavourite, width: 24, color: context.appColors.primaryColor),
             ),
             BottomNavigationBarItem(
-              label: AppStrings.lblTabSettings,
-              icon: Image.asset(AppImages.icTabSettings, width: 24),
-              activeIcon: Image.asset(AppImages.icTabSettings, width: 24, color: context.appColors.primaryColor),
+              label: AppStrings.lblTabMealPlan,
+              icon: Image.asset(AppImages.icTabMealPlan, width: 24),
+              activeIcon: Image.asset(AppImages.icTabMealPlan, width: 24, color: context.appColors.primaryColor),
             ),
+
           ],
         );
       },

@@ -13,7 +13,7 @@ class RecipeRemoteDataSourceImpl extends RecipeRemoteDataSource {
   @override
   Future<List<SearchRecipeModel>> searchRecipeByIngredients(String ingredients) async {
     try {
-      var result = await  _recipeApiService.searchRecipeByIngredients(ingredients);
+      var result = await _recipeApiService.searchRecipeByIngredients(ingredients);
       return result.results ?? [];
     } on DioException catch (dioError) {
       throw ErrorHandler.dioException(error: dioError);
@@ -25,8 +25,20 @@ class RecipeRemoteDataSourceImpl extends RecipeRemoteDataSource {
   @override
   Future<RecipeDetailResponse> getRecipeDetail(String id) async {
     try {
-      var result = await  _recipeApiService.getRecipeDetail(id);
+      var result = await _recipeApiService.getRecipeDetail(id);
       return result;
+    } on DioException catch (dioError) {
+      throw ErrorHandler.dioException(error: dioError);
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<RecipeDetailResponse>> getRecipeByMealType(String mealType) async {
+    try {
+      var res = await _recipeApiService.getRecipeByMealType(mealType);
+      return res.results ?? [];
     } on DioException catch (dioError) {
       throw ErrorHandler.dioException(error: dioError);
     } catch (error) {

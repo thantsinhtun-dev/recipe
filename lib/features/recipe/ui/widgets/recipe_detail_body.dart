@@ -193,6 +193,9 @@ class RecipeInstructionSteps extends StatelessWidget {
                                   width: 36,
                                   height: 36,
                                   fit: BoxFit.fitWidth,
+                                  errorWidget: (context, url, error) {
+                                    return const SizedBox();
+                                  },
                                 ),
                                 Text(ingredient.localizedName,
                                     style: const TextStyle(fontSize: 12)),
@@ -258,19 +261,28 @@ class RecipeIngredients extends StatelessWidget {
                   height: 24,
                 ),
                 const SizedBox(width: 10),
-                Text(
-                  ingredients[index].name,
-                  style: context.appFonts.customFont(
-                    fontSize: FontSize.s14,
-                    fontWeight: FontWeight.w400,
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    ingredients[index].name,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.appFonts.customFont(
+                      fontSize: FontSize.s14,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
-                const Spacer(),
-                Text(
-                  ingredients[index].getIngredientData,
-                  style: context.appFonts.customFont(
-                    fontSize: FontSize.s14,
-                    fontWeight: FontWeight.w400,
+                Expanded(
+                  flex: 2,
+                  child: Text(
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    textAlign: TextAlign.end,
+                    ingredients[index].getIngredientData,
+                    style: context.appFonts.customFont(
+                      fontSize: FontSize.s14,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
               ],

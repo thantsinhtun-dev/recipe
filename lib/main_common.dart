@@ -11,6 +11,7 @@ FutureOr<void> main() async {
   final router = AppRouter();
   await EasyLocalization.ensureInitialized();
   await Preferences().init();
+
   // Preferences().clearData();
   runApp(
     EasyLocalization(

@@ -10,5 +10,6 @@ class ApiConst {
       "/recipes/findByIngredients?ingredients=$ingredients&number=15&limitLicense=true&ranking=1&ignorePantry=false";
 
   static String pathGetRecipeDetail(String id) => "/recipes/$id/information?includeNutrition=true";
+  static String pathGetRecipeByMealType(String mealType) => "/recipes/random?tags=$mealType&number=15";
 
 }

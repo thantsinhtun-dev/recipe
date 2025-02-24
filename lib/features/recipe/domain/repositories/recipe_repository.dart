@@ -14,6 +14,7 @@ abstract class RecipeRepository {
   Future<List<SearchRecipeEntity>> searchRecipeByIngredients(String ingredients);
   Future<RecipeDetailEntity> getRecipeDetail(String id);
   Future<void> updateRecipe(RecipeDetailEntity entity);
-
   Stream<List<RecipeDetailEntity>> getFavouriteRecipes();
+  Future<List<RecipeDetailEntity>> getRecipeByMealType(String mealType);
+
 }

@@ -11,4 +11,6 @@ final recipeRemoteDataSourceProvider = Provider(
 abstract class RecipeRemoteDataSource {
   Future<List<SearchRecipeModel>> searchRecipeByIngredients(String ingredients);
   Future<RecipeDetailResponse> getRecipeDetail(String id);
+  Future<List<RecipeDetailResponse>> getRecipeByMealType(String mealType);
+
 }

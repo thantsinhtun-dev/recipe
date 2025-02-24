@@ -67,4 +67,16 @@ class RecipeRepositoryImpl extends RecipeRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<List<RecipeDetailEntity>> getRecipeByMealType(String mealType) async {
+    try {
+      var res = await _recipeRemoteDataSource.getRecipeByMealType(mealType);
+      return res.map((e) => e.toEntity()).toList();
+    } on DioException catch (dioError) {
+      throw ErrorHandler.dioException(error: dioError);
+    } catch (error) {
+      rethrow;
+    }
+  }
 }

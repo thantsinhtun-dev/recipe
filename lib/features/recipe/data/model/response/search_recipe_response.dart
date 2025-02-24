@@ -8,7 +8,11 @@ class SearchRecipeResponse extends BaseResponseModel<SearchRecipeResponse> {
 
   @override
   SearchRecipeResponse fromJson(Map<String, dynamic> json) {
-    return SearchRecipeResponse(results: []);
+    return SearchRecipeResponse(
+        results: json["recipes"] == null
+            ? []
+            : List<SearchRecipeModel>.from(
+                json["recipes"]!.map((x) => SearchRecipeModel.fromJson(x))));
   }
 
   @override
@@ -21,7 +25,10 @@ class SearchRecipeResponse extends BaseResponseModel<SearchRecipeResponse> {
 
   @override
   Map<String, dynamic> toJson() {
-    return {};
+    return {
+      "recipes":
+          results == null ? [] : List<dynamic>.from(results!.map((x) => x.toJson())),
+    };
   }
 }
 
@@ -46,8 +53,7 @@ class SearchRecipeModel {
     this.likes,
   });
 
-  factory SearchRecipeModel.fromJson(Map<String, dynamic> json) =>
-      SearchRecipeModel(
+  factory SearchRecipeModel.fromJson(Map<String, dynamic> json) => SearchRecipeModel(
         id: json["id"],
         title: json["title"],
         image: json["image"],

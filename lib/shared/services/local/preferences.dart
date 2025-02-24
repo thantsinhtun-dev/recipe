@@ -4,9 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recipe/shared/extenstions/ext_encrypt.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../features/auth/data/models/models.dart';
-import '../../../features/auth/domain/entities/entities.dart';
-
 final preferencesProvider = Provider((ref) => Preferences());
 
 class Preferences {
@@ -30,17 +27,6 @@ class Preferences {
   }
   String getAccessToken() {
     return _prefs.getString(_accessToken)?.aesDecrypt() ?? "";
-  }
-
-  void saveLoginInfo(LoginEntity entity) {
-    _prefs.setString(_loginInfo, entity.toEncodeJson());
-  }
-
-  LoginEntity getLoginInfo() {
-    var entity = _prefs.getString(_loginInfo) ?? "";
-    return entity.isEmpty
-        ? LoginInfoModel().toEntity()
-        : LoginEntity.fromEncodeJson(entity);
   }
 
   void clearData(){
