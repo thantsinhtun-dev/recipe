@@ -1,18 +1,14 @@
-
 import '../../../core/app_flavor.dart';
 
 class ApiConst {
   static String get baseUrl => switch (AppFlavor.flavor) {
-        Flavor.dev => "https://ezwel.live",
-        Flavor.prod => "https://ezwel.live",
+        Flavor.dev => "https://api.spoonacular.com",
+        Flavor.prod => "https://api.spoonacular.com",
       };
 
-  static String userLoginPath({
-    String countryCode = "95",
-    required String phone,
-    required String password,
-  }) {
-    return "/appapi/service=Login.userLogin&country_code=$countryCode&user_login=$phone&user_pass=$password";
-  }
-  static String socialLoginPath = "/social/login";
+  static String pathSearchRecipeByIngredients(String ingredients) =>
+      "/recipes/findByIngredients?ingredients=$ingredients&number=15&limitLicense=true&ranking=1&ignorePantry=false";
+
+  static String pathGetRecipeDetail(String id) => "/recipes/$id/information?includeNutrition=true";
+
 }

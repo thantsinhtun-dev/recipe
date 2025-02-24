@@ -10,6 +10,7 @@ class AppImages {
   static const icTabSettings = '$imagePath/ic_tab_settings.png';
 
   static const icSearch = '$imagePath/ic_search.png';
+  static const icItemNotFound = '$imagePath/ic_recipe_not_found.png';
 
 
 

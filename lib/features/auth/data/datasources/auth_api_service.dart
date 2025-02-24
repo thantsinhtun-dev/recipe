@@ -13,14 +13,14 @@ class AuthApiService extends BaseApiService {
   Future<LoginResponseModel> userLogin(String phone, String password) async {
     return await postServerCall(
       LoginResponseModel(),
-      ApiConst.userLoginPath(phone: phone, password: password),
+      "ApiConst.userLoginPath(phone: phone, password: password)",
     );
   }
 
   Future<LoginResponseModel> socialLogin(String provider, String token) async {
     return await postServerCall(
       LoginResponseModel(),
-      ApiConst.socialLoginPath,
+      "ApiConst.socialLoginPath",
       body: {
         "provider": provider,
         "id_token": token,

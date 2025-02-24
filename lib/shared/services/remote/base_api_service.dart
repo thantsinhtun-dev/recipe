@@ -23,6 +23,9 @@ class BaseApiService {
         queryParameters: queryParameters,
         data: body,
       );
+      if(response.data is List){
+        return obj.fromJsonList(response.data);
+      }
       return obj.fromJson(response.data);
     } on DioException {
       rethrow;

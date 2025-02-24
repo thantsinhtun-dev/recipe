@@ -3,7 +3,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:recipe/core/core.dart';
-import 'package:recipe/features/main/screens/recipe_detail_screen.dart';
+import 'package:recipe/features/recipe/ui/screens/recipe_detail_screen.dart';
+import 'package:recipe/features/recipe/ui/screens/search_recipe_screen.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -15,9 +16,11 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [
           HomeAppBarWidget(
-            onTapSearch: () {},
+            onTapSearch: () {
+              context.router.pushWidget(const SearchRecipeScreen());
+            },
           ),
-          HomeBodyWidget(),
+          const HomeBodyWidget(),
         ],
       ),
     );
@@ -71,7 +74,7 @@ class HomeBodyWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: (){
-                    context.router.pushWidget(RecipeDetailScreen());
+                    context.router.pushWidget(RecipeDetailScreen(id: "663559",));
                   },
                   child: Container(
                     height: 180,

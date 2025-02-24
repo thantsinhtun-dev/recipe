@@ -38,6 +38,9 @@ class DioProvider {
         "Content-Type": "application/json",
       },
       baseUrl: ApiConst.baseUrl,
+      queryParameters: {
+        "apiKey" : "856a36732df0481eaa5d2413f7831413"
+      }
     );
     dio.interceptors.add(TokenInterceptor());
 

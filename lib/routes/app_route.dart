@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import '../features/auth/ui/screens/login_screen.dart';
 import '../features/main/screens/favourite_screen.dart';
-import '../features/main/screens/home_screen.dart';
+import '../features/recipe/ui/screens/home_screen.dart';
 import '../features/main/screens/meal_plan_screen.dart';
 import '../features/main/screens/settings_screen.dart';
 import '../features/main/screens/skeleton_screen.dart';

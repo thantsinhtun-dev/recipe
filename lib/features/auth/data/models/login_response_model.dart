@@ -29,6 +29,11 @@ class LoginResponseModel extends BaseResponseModel {
       "msg": msg,
     };
   }
+
+  @override
+  List fromJsonList(json) {
+    throw UnimplementedError();
+  }
 }
 
 class LoginDataModel {
