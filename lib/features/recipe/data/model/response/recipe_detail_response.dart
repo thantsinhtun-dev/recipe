@@ -132,7 +132,7 @@ class RecipeDetailResponse extends BaseResponseModel{
 
   RecipeDetailEntity toEntity() {
     return RecipeDetailEntity(
-      id: id ?? 0,
+      id: id.toString(),
       image: image ?? "",
       title: title ?? "",
       readyInMinutes: readyInMinutes ?? 0,
@@ -143,6 +143,7 @@ class RecipeDetailResponse extends BaseResponseModel{
       summary: summary ?? "",
       instructions: instructions ?? "",
       analyzedInstructions: analyzedInstructions?.map((e) => e.toEntity()).toList() ?? [],
+      isFavourite: false,
     );
   }
 

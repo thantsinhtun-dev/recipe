@@ -75,6 +75,43 @@ class MealPlanRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RecipeDetailScreen]
+class RecipeDetailRoute extends PageRouteInfo<RecipeDetailRouteArgs> {
+  RecipeDetailRoute({
+    Key? key,
+    required String id,
+    List<PageRouteInfo>? children,
+  }) : super(
+         RecipeDetailRoute.name,
+         args: RecipeDetailRouteArgs(key: key, id: id),
+         initialChildren: children,
+       );
+
+  static const String name = 'RecipeDetailRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RecipeDetailRouteArgs>();
+      return RecipeDetailScreen(key: args.key, id: args.id);
+    },
+  );
+}
+
+class RecipeDetailRouteArgs {
+  const RecipeDetailRouteArgs({this.key, required this.id});
+
+  final Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'RecipeDetailRouteArgs{key: $key, id: $id}';
+  }
+}
+
+/// generated route for
 /// [SettingsScreen]
 class SettingsRoute extends PageRouteInfo<void> {
   const SettingsRoute({List<PageRouteInfo>? children})

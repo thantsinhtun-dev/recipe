@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import '../features/auth/ui/screens/login_screen.dart';
-import '../features/main/screens/favourite_screen.dart';
+import '../features/recipe/ui/screens/favourite_screen.dart';
 import '../features/recipe/ui/screens/home_screen.dart';
 import '../features/main/screens/meal_plan_screen.dart';
 import '../features/main/screens/settings_screen.dart';
 import '../features/main/screens/skeleton_screen.dart';
+import '../features/recipe/ui/screens/recipe_detail_screen.dart';
 
 part 'app_route.gr.dart';
 
@@ -23,6 +25,6 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: SettingsRoute.page, path: 'settings'),
           ],
         ),
-        AutoRoute(page: LoginRoute.page, path: '/login'),
+        AutoRoute(page: RecipeDetailRoute.page, path: '/recipeDetail'),
       ];
 }

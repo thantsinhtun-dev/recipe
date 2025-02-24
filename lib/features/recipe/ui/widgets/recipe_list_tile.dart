@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:recipe/routes/app_route.dart';
 
 import '../../../../core/core.dart';
 
@@ -27,7 +29,7 @@ class RecipeListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // context.router.pushWidget(RecipeDetailScreen());
+        context.router.push(RecipeDetailRoute(id: id));
       },
       child: Container(
         height: 180,
@@ -103,8 +105,7 @@ class RecipeListTile extends StatelessWidget {
                   ),
                 ],
               ),
-
-            if(ingredients.isNotEmpty)
+            if (ingredients.isNotEmpty)
               Text(
                 ingredients.join(","),
                 style: context.appFonts.customFont(
