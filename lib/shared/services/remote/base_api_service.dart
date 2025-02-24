@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
+import 'package:dio_cache_interceptor_hive_store/dio_cache_interceptor_hive_store.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../../domain/models/base_response_model.dart';
-
 
 class BaseApiService {
   final Dio dio;
@@ -18,12 +20,30 @@ class BaseApiService {
     Map<String, dynamic>? body = const {},
   }) async {
     try {
+      var dir = await getTemporaryDirectory();
+      var cacheStore = HiveCacheStore(
+        dir.path,
+        hiveBoxName: "recipe_cache_box",
+      );
+
+      var customCacheOptions = CacheOptions(
+        store: cacheStore,
+        policy: CachePolicy.forceCache,
+        priority: CachePriority.high,
+        maxStale: const Duration(minutes: 30),
+        hitCacheOnErrorExcept: [401, 404],
+        keyBuilder: (request) {
+          return request.uri.toString();
+        },
+        allowPostMethod: false,
+      );
+      dio.interceptors.add(DioCacheInterceptor(options: customCacheOptions));
       final response = await dio.get(
         url,
         queryParameters: queryParameters,
         data: body,
       );
-      if(response.data is List){
+      if (response.data is List) {
         return obj.fromJsonList(response.data);
       }
       return obj.fromJson(response.data);

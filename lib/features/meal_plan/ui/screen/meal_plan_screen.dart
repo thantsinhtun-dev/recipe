@@ -156,11 +156,20 @@ class MealPlanTitleWidget extends ConsumerWidget {
           },
           icon: const Icon(Icons.arrow_back_ios_rounded),
         ),
-        Text(
-          mealPlanState.weeklyText,
-          style: context.appFonts.customFont(
-            fontSize: FontSize.s16,
-            fontWeight: FontWeight.w500,
+        GestureDetector(
+          onTap: (){
+            ref.read(mealPlanProvider.notifier).initCurrentWeek();
+          },
+          child: SizedBox(
+            width: 150,
+            child: Text(
+              textAlign: TextAlign.center,
+              mealPlanState.weeklyText,
+              style: context.appFonts.customFont(
+                fontSize: FontSize.s16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
           ),
         ),
         IconButton(
