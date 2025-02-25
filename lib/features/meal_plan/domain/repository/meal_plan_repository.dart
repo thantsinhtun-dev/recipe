@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../../shared/data/local_data_source/recipe_local_datasource/recipe_local_datasource.dart';
+import '../../../recipe/data/datasources/recipe_local_datasource/recipe_local_datasource.dart';
 import '../../../recipe/domain/entities/recipe_detail_entity.dart';
 import '../../data/meal_plan_local_datasource/meal_plan_local_datasource.dart';
 import '../../data/repository/meal_plan_repository_impl.dart';

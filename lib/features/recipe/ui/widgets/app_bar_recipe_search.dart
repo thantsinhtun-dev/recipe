@@ -28,6 +28,7 @@ class SearchRecipeAppBar extends StatelessWidget {
           Expanded(
             child: TextFormField(
               controller: controller,
+              autofocus: true,
               onTap: () {
                 // onTapSearch();
               },

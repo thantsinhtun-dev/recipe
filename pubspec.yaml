@@ -23,12 +23,10 @@ dependencies:
   auto_route: ^9.3.0+1
   easy_localization: ^3.0.7+1
   encrypt: ^5.0.3
-  google_sign_in: ^6.2.2
   lottie: ^3.3.1
   drift: ^2.25.1
   path_provider: ^2.1.5
   path: ^1.9.0
-  week_number: ^1.1.1
   dio_cache_interceptor: ^3.5.1
   dio_cache_interceptor_hive_store: ^4.0.0
 

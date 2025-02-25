@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:recipe/features/recipe/domain/entities/recipe_detail_entity.dart';
 import 'package:recipe/features/recipe/domain/repositories/recipe_repository.dart';
-import '../../../../shared/data/local_data_source/recipe_local_datasource/recipe_local_datasource.dart';
+import '../datasources/recipe_local_datasource/recipe_local_datasource.dart';
 import '../../../../shared/services/services.dart';
 import '../../domain/entities/search_ingredient_entity.dart';
 import '../datasources/recipe_datasource.dart';

@@ -1,7 +1,7 @@
 import 'package:recipe/features/recipe/domain/entities/recipe_detail_entity.dart';
-import 'package:recipe/shared/data/local_data_source/recipe_local_datasource/recipe_local_datasource.dart';
+import 'package:recipe/features/recipe/data/datasources/recipe_local_datasource/recipe_local_datasource.dart';
 
-import '../../../../../shared/services/local/dao/recipe_dao.dart';
+import '../../../../../../shared/services/local/dao/recipe_dao.dart';
 
 class RecipeLocalDataSourceImpl extends RecipeLocalDataSource {
   final RecipeDao _dao;

@@ -1,6 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:path_provider/path_provider.dart';
 
 class Utils {
+  Utils._private();
+
+  static final _instance = Utils._private();
+
+  factory Utils() {
+    return _instance;
+  }
+  Future<String> getTempDir() async {
+    final dir = await getTemporaryDirectory();
+    return dir.path;
+  }
   static List<DateTime> getCurrentWeek(DateTime currentDate) {
     // Get the current date
     List<DateTime> dates = [];

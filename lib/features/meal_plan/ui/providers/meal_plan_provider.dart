@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:recipe/features/meal_plan/domain/entities/meal_plan_entity.dart';
 import 'package:recipe/features/meal_plan/domain/usecase/get_all_meal_plan_usecase.dart';
 import 'package:recipe/features/recipe/domain/entities/recipe_detail_entity.dart';
-import 'package:recipe/utils/date_utils.dart';
+import 'package:recipe/utils/utils.dart';
 import '../../domain/usecase/update_meal_plan_usecase.dart';
 
 enum MealPlanStatus { initial, loading, success, error }
